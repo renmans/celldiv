@@ -3,7 +3,7 @@ import yaml
 from pygame.locals import *
 
 class GameOfLife:
-    def __init__(self, width = 640, height = 480, cell_size = 10, speed = 10):
+    def __init__(self, width, height, cell_size, speed):
         self.width = width
         self.height = height
         self.cell_size = cell_size
@@ -44,5 +44,6 @@ class GameOfLife:
 if __name__ == '__main__':
     with open('settings.yml', 'r') as f:
         params = yaml.safe_load(f)
-        game = GameOfLife()
+        game = GameOfLife(params['width'], params['height'], 
+                params['cell_size'], params['speed'])
     game.run()
