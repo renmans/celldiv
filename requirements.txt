@@ -1,0 +1,4 @@
+pygame==1.9.6
+pygame-menu==2.1.2
+pyperclip==1.7.0
+pyYAML==5.3
