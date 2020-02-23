@@ -1,13 +1,20 @@
-import pygame
-import pygameMenu
+import sys
+import yaml
+from PyQt5 import QtWidgets
+import launcher_gui
 
-WINDOW_SIZE = (640, 480)
+class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
 
-# Pygame initialization
-surface = pygame.display.set_mode(WINDOW_SIZE)
-pygame.display.set_caption('Cellton Launcher')
-clock = pygame.time.Clock()
 
-menu = pygameMenu.Menu(surface, window_width=WINDOW_SIZE[0],
-        window_height=WINDOW_SIZE[1], font=pygameMenu.font.FONT_BEBAS,
-        title='MENU')
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    window = LauncherApp()
+    window.show()
+    app.exec_()
+
+
+if __name__ == '__main__':
+    main()
