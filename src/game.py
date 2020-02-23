@@ -72,5 +72,4 @@ if __name__ == '__main__':
             game = GameOfLife(params['width'], params['height'], 
                     params['cell_size'], params['speed'], 
                     params['cell_color'])
-        #game = GameOfLife(120, 100, 10, 10, 'green')
         game.run()

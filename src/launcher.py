@@ -10,10 +10,27 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
         self.setupUi(self)
         self.settings = settings
         self.started = False
-        self.resolutionList.itemActivated.connect(self.selectionChanged)
+        # Radio Buttons
+        self.blackRadio.toggled.connect(self.colorChanged)
+        self.redRadio.toggled.connect(self.colorChanged)
+        self.greenRadio.toggled.connect(self.colorChanged)
+        self.blueRadio.toggled.connect(self.colorChanged)
+        # Speed SpinBox
+        # Resolutions List
+        self.resolutionList.itemActivated.connect(self.resolutionChanged)
         self.launchButton.clicked.connect(self.launch)
-
-    def selectionChanged(self):
+    
+    def colorChanged(self):
+        rbuttons = (self.blackRadio, self.blueRadio, 
+            self.greenRadio, self.redRadio)
+        for rbutton in rbuttons:
+            if rbutton.isChecked():
+                self.settings['cell_color'] = rbutton.text().lower()
+    
+    def speedChanged(self):
+        self.settings['speed'] = self.speedSpinbox.value()
+    
+    def resolutionChanged(self):
         item = self.resolutionList.currentRow()
         width, height = self.resolutionList.item(item).text().split('x')
         self.settings['width'] = int(width)
@@ -21,10 +38,13 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
 
     def launch(self):
         self.started = True
-        self.selectionChanged()
-        # other methods
+        self.colorChanged()
+        self.speedChanged()
+        self.speedChanged()
+        self.resolutionChanged()
         with open('settings.yml', 'w') as f:
             yaml.safe_dump(self.settings, f)
+        self.close()
 
 def main():
     with open('settings.yml', 'r') as f:
