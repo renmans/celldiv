@@ -15,7 +15,6 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
         self.redRadio.toggled.connect(self.colorChanged)
         self.greenRadio.toggled.connect(self.colorChanged)
         self.blueRadio.toggled.connect(self.colorChanged)
-        # Speed SpinBox
         # Resolutions List
         self.resolutionList.itemActivated.connect(self.resolutionChanged)
         self.launchButton.clicked.connect(self.launch)
@@ -39,7 +38,6 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
     def launch(self):
         self.started = True
         self.colorChanged()
-        self.speedChanged()
         self.speedChanged()
         self.resolutionChanged()
         with open('settings.yml', 'w') as f:
