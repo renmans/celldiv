@@ -2,7 +2,7 @@ import pygame
 import yaml
 from pygame.locals import *
 import random
-from pprint import pprint
+import launcher
 
 class GameOfLife:
     def __init__(self, width, height, cell_size, speed, cell_color):
@@ -35,7 +35,6 @@ class GameOfLife:
         self.screen.fill(pygame.Color('white'))
         running = True
         clist = self.cell_list(True)
-        pprint(clist)
         while running:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -67,10 +66,11 @@ class GameOfLife:
             b += self.cell_size
 
 if __name__ == '__main__':
-    #with open('settings.yml', 'r') as f:
-        #params = yaml.safe_load(f)
-        #game = GameOfLife(params['width'], params['height'], 
-                #params['cell_size'], params['speed'])
-    game = GameOfLife(120, 100, 10, 10, 'green')
-    game.run()
-
+    if launcher.main():
+        with open('settings.yml', 'r') as f:
+            params = yaml.safe_load(f)
+            game = GameOfLife(params['width'], params['height'], 
+                    params['cell_size'], params['speed'], 
+                    params['cell_color'])
+        #game = GameOfLife(120, 100, 10, 10, 'green')
+        game.run()
