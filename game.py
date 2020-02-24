@@ -1,8 +1,9 @@
-import pygame
-import yaml
-from pygame.locals import *
 import random
+import pygame
+from pygame.locals import QUIT, Rect
+import yaml
 import launcher
+
 
 class GameOfLife:
     def __init__(self, width, height, cell_size, speed, cell_color):
@@ -18,15 +19,13 @@ class GameOfLife:
 
         self.speed = speed
 
-
     def draw_grid(self):
         for x in range(0, self.width, self.cell_size):
-            pygame.draw.line(self.screen, pygame.Color('black'), 
-                (x, 0), (x, self.height))
+            pygame.draw.line(self.screen, pygame.Color('black'),
+                             (x, 0), (x, self.height))
         for y in range(0, self.height, self.cell_size):
-            pygame.draw.line(self.screen, pygame.Color('black'), 
-                (0, y), (self.width, y))
-
+            pygame.draw.line(self.screen, pygame.Color('black'),
+                             (0, y), (self.width, y))
 
     def run(self):
         pygame.init()
@@ -45,31 +44,37 @@ class GameOfLife:
             clock.tick(self.speed)
         pygame.quit()
 
-    def cell_list(self, randomize = False):
+    def cell_list(self, randomize=False):
         if randomize:
-            list = [[0 for x in range(self.width // self.cell_size)] for y in range(self.height // self.cell_size)]
+            list = [[0 for x in range(self.width // self.cell_size)]
+                    for y in range(self.height // self.cell_size)]
             for i in range(self.height // self.cell_size):
                 for j in range(self.width // self.cell_size):
                     list[i][j] = random.randint(0, 1)
             return list
         else:
-            return [[0] * (self.width // self.cell_size)] * (self.height // self.cell_size)
+            return [[0 for x in range(self.width // self.cell_size)]
+                    for y in range(self.height // self.cell_size)]
 
     def draw_cell_list(self, list):
-        a, b = 0, 0
+        column, row = 0, 0
         for x in list:
-            a = 0
+            column = 0
             for i in x:
                 if i:
-                    pygame.draw.rect(self.screen, pygame.Color(self.cell_color), Rect(a, b, self.cell_size, self.cell_size))
-                a += self.cell_size
-            b += self.cell_size
+                    pygame.draw.rect(self.screen,
+                                     pygame.Color(self.cell_color),
+                                     Rect(column, row, self.cell_size,
+                                          self.cell_size))
+                column += self.cell_size
+            row += self.cell_size
+
 
 if __name__ == '__main__':
     if launcher.main():
         with open('settings.yml', 'r') as f:
             params = yaml.safe_load(f)
-            game = GameOfLife(params['width'], params['height'], 
-                    params['cell_size'], params['speed'], 
-                    params['cell_color'])
+            game = GameOfLife(params['width'], params['height'],
+                              params['cell_size'], params['speed'],
+                              params['cell_color'])
         game.run()
