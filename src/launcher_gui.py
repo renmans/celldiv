@@ -1,10 +1,19 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'launcher_gui.ui'
+#
+# Created by: PyQt5 UI code generator 5.12.3
+#
+# WARNING! All changes made in this file will be lost!
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(403, 274)
+        MainWindow.resize(368, 316)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -17,6 +26,8 @@ class Ui_MainWindow(object):
         self.resolutionList = QtWidgets.QListWidget(self.centralwidget)
         self.resolutionList.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.resolutionList.setObjectName("resolutionList")
+        item = QtWidgets.QListWidgetItem()
+        self.resolutionList.addItem(item)
         item = QtWidgets.QListWidgetItem()
         self.resolutionList.addItem(item)
         item = QtWidgets.QListWidgetItem()
@@ -48,6 +59,14 @@ class Ui_MainWindow(object):
         self.blueRadio = QtWidgets.QRadioButton(self.centralwidget)
         self.blueRadio.setObjectName("blueRadio")
         self.verticalLayout.addWidget(self.blueRadio)
+        self.sizeLabel = QtWidgets.QLabel(self.centralwidget)
+        self.sizeLabel.setObjectName("sizeLabel")
+        self.verticalLayout.addWidget(self.sizeLabel)
+        self.sizeSpinbox = QtWidgets.QSpinBox(self.centralwidget)
+        self.sizeSpinbox.setMaximum(100)
+        self.sizeSpinbox.setProperty("value", 10)
+        self.sizeSpinbox.setObjectName("sizeSpinbox")
+        self.verticalLayout.addWidget(self.sizeSpinbox)
         self.speedLabel = QtWidgets.QLabel(self.centralwidget)
         self.speedLabel.setObjectName("speedLabel")
         self.verticalLayout.addWidget(self.speedLabel)
@@ -65,7 +84,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.resolutionList.setCurrentRow(1)
+        self.resolutionList.setCurrentRow(-1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -79,10 +98,12 @@ class Ui_MainWindow(object):
         item = self.resolutionList.item(1)
         item.setText(_translate("MainWindow", "640x480"))
         item = self.resolutionList.item(2)
-        item.setText(_translate("MainWindow", "1280x720"))
+        item.setText(_translate("MainWindow", "800x600"))
         item = self.resolutionList.item(3)
-        item.setText(_translate("MainWindow", "1600x900"))
+        item.setText(_translate("MainWindow", "1280x720"))
         item = self.resolutionList.item(4)
+        item.setText(_translate("MainWindow", "1600x900"))
+        item = self.resolutionList.item(5)
         item.setText(_translate("MainWindow", "1920x1080"))
         self.resolutionList.setSortingEnabled(__sortingEnabled)
         self.colorLabel.setText(_translate("MainWindow", "Cell color"))
@@ -90,5 +111,6 @@ class Ui_MainWindow(object):
         self.redRadio.setText(_translate("MainWindow", "Red"))
         self.greenRadio.setText(_translate("MainWindow", "Green"))
         self.blueRadio.setText(_translate("MainWindow", "Blue"))
+        self.sizeLabel.setText(_translate("MainWindow", "Cell size"))
         self.speedLabel.setText(_translate("MainWindow", "Game speed"))
         self.launchButton.setText(_translate("MainWindow", "Launch"))

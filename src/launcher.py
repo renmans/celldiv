@@ -26,6 +26,9 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
             if rbutton.isChecked():
                 self.settings['cell_color'] = rbutton.text().lower()
     
+    def sizeChanged(self):
+        self.settings['cell_size'] = self.sizeSpinbox.value()
+    
     def speedChanged(self):
         self.settings['speed'] = self.speedSpinbox.value()
     
@@ -38,6 +41,7 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
     def launch(self):
         self.started = True
         self.colorChanged()
+        self.sizeChanged()
         self.speedChanged()
         self.resolutionChanged()
         with open('settings.yml', 'w') as f:
