@@ -17,6 +17,7 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
         self.blueRadio.toggled.connect(self.colorChanged)
         # Resolutions List
         self.resolutionList.itemActivated.connect(self.resolutionChanged)
+        self.figureList.itemActivated.connect(self.setup)
         self.launchButton.clicked.connect(self.launch)
 
     def colorChanged(self):
@@ -38,12 +39,30 @@ class LauncherApp(QtWidgets.QMainWindow, launcher_gui.Ui_MainWindow):
         self.settings['width'] = int(width)
         self.settings['height'] = int(height)
 
+    def setup(self):
+        item = self.figureList.currentRow()
+        figure = self.figureList.item(item).text().lower()
+        figures = {'random': [],
+                   'glider': [(11, 12), (12, 10), (12, 12), (13, 11),
+                              (13, 12)],
+                   'gun':    [(15, 11), (16, 11), (15, 12), (16, 12),
+                              (15, 21), (16, 21), (17, 21), (14, 22),
+                              (18, 22), (13, 23), (19, 23), (13, 24),
+                              (19, 24), (16, 25), (14, 26), (18, 26),
+                              (15, 27), (16, 27), (17, 27), (16, 28),
+                              (13, 31), (14, 31), (15, 31), (13, 32),
+                              (14, 32), (15, 32), (12, 33), (16, 33),
+                              (11, 35), (12, 35), (16, 35), (17, 35),
+                              (13, 45), (14, 45), (13, 46), (14, 46)]}
+        self.settings['figure'] = figures[figure]
+
     def launch(self):
         self.started = True
         self.colorChanged()
         self.sizeChanged()
         self.speedChanged()
         self.resolutionChanged()
+        self.setup()
         with open('settings.yml', 'w') as f:
             yaml.safe_dump(self.settings, f)
         self.close()
