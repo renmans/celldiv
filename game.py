@@ -114,7 +114,6 @@ class GameOfLife:
 
 if __name__ == '__main__':
     if launcher.main():
-        game = GameOfLife()
         try:
             with open('settings.yml', 'r') as f:
                 params = yaml.safe_load(f)
@@ -124,7 +123,6 @@ if __name__ == '__main__':
                 if params['figure']:
                     game.randomize = False
                     game.figure = params['figure']
-
         except FileNotFoundError:
             game = GameOfLife()
         game.run()

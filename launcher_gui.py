@@ -104,8 +104,8 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.resolutionList.setCurrentRow(-1)
-        self.figureList.setCurrentRow(-1)
+        self.resolutionList.setCurrentRow(0)
+        self.figureList.setCurrentRow(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
