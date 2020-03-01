@@ -1,7 +1,7 @@
-import random
+from random import randint
 import pygame
 from pygame.locals import QUIT, Rect
-import yaml
+from yaml import safe_load
 import launcher
 
 
@@ -36,7 +36,7 @@ class GameOfLife:
         if randomize:
             for i in range(self.height // self.cell_size):
                 for j in range(self.width // self.cell_size):
-                    self.cells[i][j] = random.randint(0, 1)
+                    self.cells[i][j] = randint(0, 1)
             return self.cells
         else:
             return [[0 for x in range(self.width // self.cell_size)]
@@ -92,8 +92,8 @@ class GameOfLife:
         self.screen.fill(pygame.Color('white'))
         running = True
         self.cells = self.cell_list(self.randomize)
-        for cell in self.figure:
-            self.cells[cell[0]][cell[1]] = 1
+        for cell_x, cell_y in self.figure:
+            self.cells[cell_x][cell_y] = 1
         while running:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     if launcher.main():
         try:
             with open('settings.yml', 'r') as f:
-                params = yaml.safe_load(f)
+                params = safe_load(f)
                 game = GameOfLife(params['width'], params['height'],
                                   params['cell_size'], params['speed'],
                                   params['cell_color'])
