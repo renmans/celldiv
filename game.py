@@ -62,18 +62,12 @@ class GameOfLife:
 
     def get_neighbours(self, i, j):
         alive = 0
+        length = self.field
         for y in [i-1, i, i+1]:
             for x in [j-1, j, j+1]:
                 if (y == i and x == j):
                     continue
-                if (x < self.field-1 and y < self.field-1):
-                    alive += self.cells[y][x]
-                elif (y == self.field-1 and x < self.field-1):
-                    alive += self.cells[0][x]
-                elif (y < self.field-1 and x == self.field-1):
-                    alive += self.cells[y][0]
-                else:
-                    alive += self.cells[0][0]
+                alive += self.cells[y % length][x % length]
         return alive
 
     def get_next_generation(self):
