@@ -91,6 +91,7 @@ class GameOfLife:
         pygame.display.set_caption('Cellton')
         self.screen.fill(pygame.Color('white'))
         running = True
+        pause = False
         self.cells = self.cell_list(self.randomize)
         for cell_x, cell_y in self.figure:
             self.cells[cell_x][cell_y] = 1
@@ -98,11 +99,15 @@ class GameOfLife:
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False
-            self.draw_cell_list(self.cells)
-            self.draw_grid()
-            pygame.display.flip()
-            clock.tick(self.speed)
-            self.cells = self.get_next_generation()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        pause = not pause
+            if not pause:
+                self.draw_cell_list(self.cells)
+                self.draw_grid()
+                pygame.display.flip()
+                clock.tick(self.speed)
+                self.cells = self.get_next_generation()
         pygame.quit()
 
 
