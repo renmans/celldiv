@@ -1,15 +1,4 @@
 # Cellton
-```
- ______     ______     __         __         ______   ______     __   __    
-/\  ___\   /\  ___\   /\ \       /\ \       /\__  _\ /\  __ \   /\ "-.\ \   
-\ \ \____  \ \  __\   \ \ \____  \ \ \____  \/_/\ \/ \ \ \/\ \  \ \ \-.  \  
- \ \_____\  \ \_____\  \ \_____\  \ \_____\    \ \_\  \ \_____\  \ \_\\"\_\ 
-  \/_____/   \/_____/   \/_____/   \/_____/     \/_/   \/_____/   \/_/ \/_/ 
-                                                                            
-```
-![Gun Gif](/img/gun.gif)
-
-![Launcher Pic](/img/launcher.png)
 
 # Running
 ```
@@ -21,6 +10,9 @@ python3 game.py
 ```
 SPACE - Pause / start the creation of the next generations
 ```
+
+![Gun Gif](/img/gun.gif)
+![Launcher Pic](/img/launcher.png)
 
 # TODO
 * add the maximum number of generations
