@@ -12,7 +12,6 @@ SPACE - Pause / start the creation of the next generations
 ```
 
 ![Gun Gif](/img/gun.gif)
-![Launcher Pic](/img/launcher.png)
 
 # TODO
 * add the maximum number of generations

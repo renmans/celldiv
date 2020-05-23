@@ -110,7 +110,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Cellton Launcher"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Celldiv Launcher"))
         self.resolutionLabel.setText(_translate("MainWindow", "Resolution"))
         __sortingEnabled = self.resolutionList.isSortingEnabled()
         self.resolutionList.setSortingEnabled(False)
