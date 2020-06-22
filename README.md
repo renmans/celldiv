@@ -1,5 +1,7 @@
 # Celldiv
 
+> The goal is not to create a cellular automaton, but to achieve the highest performance in Python
+
 # Running
 ```
 pip install -r requirements.txt
@@ -13,8 +15,3 @@ SPACE - Pause / start the creation of the next generations
 
 ![Gun Gif](/img/gun.gif)
 
-# TODO
-* add the maximum number of generations
-* add the ability to read the state of cells from file
-* add the ability to save the current state of cells to a file
-* add the ability to paint cells manually

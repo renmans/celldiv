@@ -1,3 +1,4 @@
+from numba import jit, prange
 from random import randint
 import pygame
 from pygame.locals import QUIT, Rect
@@ -70,9 +71,10 @@ class GameOfLife:
                 alive += self.cells[y % length][x % length]
         return alive
 
+    @jit(nopython=True, parallel=True)
     def get_next_generation(self):
         nextgen = self.cell_list()
-        for y in range(self.field):
+        for y in prange(self.field):
             for x in range(self.field):
                 alive = self.get_neighbours(y, x)
                 if (self.cells[y][x] == 1 and alive < 2):
