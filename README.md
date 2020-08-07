@@ -1,7 +1,5 @@
 # Celldiv
 
-> The goal is not to create a cellular automaton, but to achieve the highest performance in Python
-
 # Running
 ```
 pip install -r requirements.txt
