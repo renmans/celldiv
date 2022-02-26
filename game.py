@@ -91,7 +91,7 @@ class GameOfLife:
     def run(self):
         pygame.init()
         clock = pygame.time.Clock()
-        pygame.display.set_caption('Cellton')
+        pygame.display.set_caption('Celldiv')
         self.screen.fill(pygame.Color('white'))
         running = True
         pause = False
